@@ -26,6 +26,8 @@
 
   <script>
     reactTime = undefined
+    countDown = document.getElementById("counter")
+    target = document.getElementById("target")
 
     function recordTime(){
       reactTime = Date.now()
@@ -34,14 +36,19 @@
     }
 
     function startTime(){
-      setTimeout = [9]
-      for (let i = 0; i < setTimeout.length; i++){
-        setTimeout.push(i)
+      for (let i = 0; i < 9; i++){
         setTimeout(function () {
-          countDown = document.getElementById("counter")
           countDown.innerHTML = i
         }, (8 - i) * 1000)
       }
+      setTimeout(function () {
+        if (reactTime == undefined){
+          target.innerHTML = "Too Slow"
+        }
+        endTime = Date.now()
+        diff = reactTime - endTime
+        target.innerHTML = diff
+      }, 8000)
     }
 
 
