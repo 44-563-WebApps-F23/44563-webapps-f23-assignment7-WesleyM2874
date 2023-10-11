@@ -22,7 +22,9 @@
     <p>Click on the locations to search fer treasure, beware the traps!</p> <br>
     <p id="locations">Number of locations checked is 0.</p>
     <p id="penalty">Penalty is 0.</p>
-    <p onclick="help()">Click for help.</p>
+    <div>
+        <p onclick="help()">Click for help.</p>
+    </div>
     <p id="help">Help report</p> <br>
 
     <div class="table">
@@ -85,27 +87,21 @@
                 checkCount += 1
                 gameOver = true
                 penalty -= 3
-                locationsC = "Number of locations checked is " + checkCount + "."
-                penaltyS = "Penalty is " + penalty + "."
-                lastCheck = pos
             }
             else if (pos == trapLocation){
                 document.getElementById(ids[pos]).src = "trap.jpg"
                 checkCount += 1
                 gameOver = true
                 penalty += 4
-                locationsC = "Number of locations checked is " + checkCount + "."
-                penaltyS = "Penalty is " + penalty + "."
-                lastCheck = pos
             }
             else {
                 document.getElementById(ids[pos]).src = "skull.jpg"
-                cehckCount += 1
+                checkCount += 1
                 penalty += 1
-                locationsC = "Number of locations checked is " + checkCount + "."
-                penaltyS = "Penalty is " + penalty + "."
-                lastCheck = pos
             }
+            locationsC.innerHTML = "Number of locations checked is " + checkCount + "."
+            penaltyS.innerHTML = "Penalty is " + penalty + "."
+            lastCheck = pos
         }
         function help(){
             helpReport = document.getElementById("help")
@@ -116,17 +112,20 @@
             treasureCol = treasureLocation % 5
             treasureRow = Math.floor(treasureLocation / 5)
 
-            if ((((treasureCol - currentCol)**2) == 1) ^ ((treasureRow - currentRow)**2 == 1)){
-                helpReport = "Can smell it"
+            if (((((treasureCol - currentCol)**2) == 1) && ((treasureRow - currentRow)**2 == 0)) ^ (((treasureRow - currentRow)**2 == 1) && (((treasureCol - currentCol)**2) == 0))){
+                helpReport.innerHTML = "Can smell it"
+            }
+            else if (((((treasureCol - currentCol)**2)/2 == 2) && ((treasureRow - currentRow)**2 == 0)) ^ (((treasureRow - currentRow)**2/2 == 2) && (((treasureCol - currentCol)**2) == 0))){
+                helpReport.innerHTML = "Close matie"
             }
             else if ((treasureCol - currentCol)**2 + (treasureRow - currentRow)**2 == 2){
-                helpReport = "Close matie"
+                helpReport.innerHTML = "Close matie"
             }
             else {
-                helpReport = "Step faster"
+                helpReport.innerHTML = "Step faster"
             }
             penalty += 2
-            penaltyS = "Penalty is " + penalty + "."
+            penaltyS.innerHTML = "Penalty is " + penalty + "."
         }
 
     </script>
