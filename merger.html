@@ -1,36 +1,45 @@
 <!DOCTYPE html>
-<html> <head> <style>
-    .flex-container {
-      display: flex;  flex-direction:row;
-      background-color: red;
-  }
+<html>
+	<head>
+		<title></title>
 
-.flex-container > div {  /*div children of the flex container*/
-  background-color: #f1f1f1; 
-  margin: 10px;  padding: 20px;  font-size: 30px;
-}
+	<style>
+    	.flex-container {
+    	display: flex;  flex-direction:row;
+    	background-color: red;
+		}
 
-/* Responsive layout */
-@media (max-width: 600px) { 
-	 .flex-container{
-		 flex-direction:column;
-		 background-color: green;
-	  }
-	}
-</style></head>
+		.flex-container > div {  /*div children of the flex container*/
+		background-color: #f1f1f1; 
+		margin: 10px;  padding: 20px;  font-size: 30px;
+		}
 
-
+		/* Responsive layout */
+		@media (max-width: 600px) { 
+	 		.flex-container{
+			flex-direction:column;
+			background-color: green;
+	  		}
+		}
+	</style>
+	</head>
 
 <body>
-		<div class="flex-container" id="target">
-		  <div>row item 1</div>   
-		  <div>row item 2</div>  
-		  <div>row item 3</div>  
-		</div>
+	<h2>Wes builds a merger</h2>
+
+	<input type="text" id="input"> <br><br>
+
+
+
+
+	<div class="flex-container" id="target">
+		<div class="merger">row item 1</div>
+		<div class="merger">row item 2</div>
+		<div class="merger">row item 3</div>
+	</div>
 	
-	<p> Press the button to create an new element of type div and then add it to the container.
-		</p>
-		<button onclick="makeNewDiv()">Add one</button>
+	<p>Press the button to create an new element of type div and then add it to the container.</p>
+	<button onclick="makeNewDiv()">Add end</button>
 	
 	
 </body>
@@ -38,8 +47,10 @@
 	function makeNewDiv(){
 		/* make the div and its text */
 		let element = document.createElement("div")
-		element.innerHTML = "an item after 3"
+		input = document.getElementById("input").value
+		element.innerHTML = input
 		element.style.color = "orange"
+		element.className = "merger"
 
 		/* add it to the container */
 		let container = document.getElementById('target')
